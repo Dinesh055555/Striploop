@@ -1,0 +1,9 @@
+{
+  "name": "StripLoop",
+  "short_name": "StripLoop",
+  "start_url": "/collector",
+  "display": "standalone",
+  "background_color": "#F2F8F3",
+  "theme_color": "#0F3D2E",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
