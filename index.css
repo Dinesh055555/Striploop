@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-mist text-ink font-sans antialiased; font-feature-settings: "tnum" 1; }
+  h1, h2, h3, h4 { @apply font-display text-forest; letter-spacing: -0.01em; }
+  :focus-visible { outline: 3px solid #3A9D63; outline-offset: 2px; border-radius: 6px; }
+  input, select, textarea { @apply text-ink; }
+}
+
+@layer components {
+  .panel { @apply bg-white rounded-2xl border border-sage/80; }
+  .field { @apply w-full rounded-xl border border-sage bg-white px-3 py-2.5 text-[15px] focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/30; }
+  .label { @apply block text-[13px] font-semibold text-forest/80 mb-1.5; }
+  .tbl { @apply w-full text-sm; }
+  .tbl th { @apply text-left font-semibold text-forest/70 text-[12.5px] py-2 px-3 border-b border-sage bg-sage-100/60 whitespace-nowrap; }
+  .tbl td { @apply py-2.5 px-3 border-b border-sage-200 align-top; }
+  .tbl tr:last-child td { @apply border-b-0; }
+  .tbl td.tabular-nums, .tbl th.text-right { @apply whitespace-nowrap; }
+}
+
+/* Moving scan line in the simulated camera view */
+@keyframes scanline { 0% { transform: translateY(0); } 100% { transform: translateY(176px); } }
+.scanline { animation: scanline 1.6s ease-in-out infinite alternate; }
+
+/* Recording dot on the CCTV panel */
+@keyframes blink { 50% { opacity: 0.25; } }
+.rec { animation: blink 1.2s steps(2, start) infinite; }
+
+/* One orchestrated moment: links of the custody strip lock in as events arrive */
+@keyframes lockin { 0% { transform: scale(0.85); opacity: 0; } 60% { transform: scale(1.04); opacity: 1; } 100% { transform: scale(1); } }
+.lockin { animation: lockin 420ms cubic-bezier(.2,.8,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline, .rec, .lockin { animation: none !important; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .print-area { box-shadow: none !important; border: none !important; }
+}
+
+.scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #CFE6D6; border-radius: 6px; }
